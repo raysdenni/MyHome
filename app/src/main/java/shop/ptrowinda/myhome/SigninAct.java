@@ -29,6 +29,8 @@ public class SigninAct extends AppCompatActivity {
     DatabaseReference reference;
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
+    String LEVEL_KEY = "levelkey";
+    String level_key = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,8 @@ public class SigninAct extends AppCompatActivity {
 
                                     //Mengambil data password dari firebase
                                     String passwordFromFirebase = dataSnapshot.child("password").getValue().toString();
+                                    // Mengambil data level dari firebase
+                                    String levelFromFirebase = dataSnapshot.child("level").getValue().toString();
                                     //Validasi password dengan password yang ada di firebase
                                     if (password.equals(passwordFromFirebase)){
 
@@ -93,11 +97,34 @@ public class SigninAct extends AppCompatActivity {
                                         editor.putString(username_key, xusername.getText().toString());
                                         editor.apply();
 
-                                        //berpindah aktivity
-                                        Intent gotohome = new Intent(SigninAct.this,HomeAct.class);
-                                        startActivity(gotohome);
-                                        progressBar.setVisibility(View.GONE);
-                                        finish();
+                                        //Simpan level (key) kepada lokal
+                                        SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
+                                        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
+                                        editor2.putString(level_key, levelFromFirebase);
+                                        editor2.apply();
+
+                                        if (levelFromFirebase.equals("1")){
+                                            //berpindah aktivity
+                                            Toast.makeText(getApplicationContext(), "Masuk sebagai Admin berhasil!", Toast.LENGTH_SHORT).show();
+                                            Intent gotoadminpanel = new Intent(SigninAct.this,AdminPanel.class);
+                                            startActivity(gotoadminpanel);
+                                            progressBar.setVisibility(View.GONE);
+                                            finish();
+                                        }else if (levelFromFirebase.equals("2")){
+                                            //berpindah aktivity
+                                            Toast.makeText(getApplicationContext(), "Masuk sebagai Marketing berhasil!", Toast.LENGTH_SHORT).show();
+                                            Intent gotomarketingpanel = new Intent(SigninAct.this,MarketingPanel.class);
+                                            startActivity(gotomarketingpanel);
+                                            progressBar.setVisibility(View.GONE);
+                                            finish();
+                                        }else{
+                                            //berpindah aktivity
+                                            Toast.makeText(getApplicationContext(), "Masuk sebagai Konsumen berhasil!", Toast.LENGTH_SHORT).show();
+                                            Intent gotohome = new Intent(SigninAct.this,HomeAct.class);
+                                            startActivity(gotohome);
+                                            progressBar.setVisibility(View.GONE);
+                                            finish();
+                                        }
                                     }else {
                                         Toast.makeText(getApplicationContext(), "Password Salah!", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);

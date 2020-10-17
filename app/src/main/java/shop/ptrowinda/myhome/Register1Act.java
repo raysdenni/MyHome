@@ -30,6 +30,9 @@ public class Register1Act extends AppCompatActivity {
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
+    String LEVEL_KEY = "levelkey";
+    String level_key = "";
+    String default_level = "3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +104,12 @@ public class Register1Act extends AppCompatActivity {
                                 editor.putString(username_key, username.getText().toString());
                                 editor.apply();
 
+                                //fungsi untuk menyimpan level ke lokal
+                                SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
+                                SharedPreferences.Editor editor2 = sharedPreferences.edit();
+                                editor2.putString(level_key, default_level);
+                                editor2.apply();
+
                                 //simpan kedalam database
                                 reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
                                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -109,7 +118,8 @@ public class Register1Act extends AppCompatActivity {
                                         dataSnapshot.getRef().child("username").setValue(username.getText().toString());
                                         dataSnapshot.getRef().child("password").setValue(password.getText().toString());
                                         dataSnapshot.getRef().child("email_address").setValue(email_address.getText().toString());
-                                        dataSnapshot.getRef().child("user_balance").setValue(5000000);
+                                        dataSnapshot.getRef().child("user_balance").setValue(0);
+                                        dataSnapshot.getRef().child("level").setValue(default_level);
                                     }
 
                                     @Override
