@@ -32,6 +32,9 @@ public class HomeAct extends AppCompatActivity {
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
     String username_key_new = "";
+    String LEVEL_KEY = "levelkey";
+    String level_key = "";
+    String level_key_new = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +118,8 @@ public class HomeAct extends AppCompatActivity {
     public void getUsernameLocal(){
         SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
         username_key_new = sharedPreferences.getString(username_key, "");
+        SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
+        level_key_new = sharedPreferences2.getString(level_key, "");
     }
 
     public void onBackPressed(){

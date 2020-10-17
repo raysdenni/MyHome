@@ -106,7 +106,7 @@ public class Register1Act extends AppCompatActivity {
 
                                 //fungsi untuk menyimpan level ke lokal
                                 SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
-                                SharedPreferences.Editor editor2 = sharedPreferences.edit();
+                                SharedPreferences.Editor editor2 = sharedPreferences2.edit();
                                 editor2.putString(level_key, default_level);
                                 editor2.apply();
 

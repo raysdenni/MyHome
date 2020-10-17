@@ -54,7 +54,6 @@ public class Register2Act extends AppCompatActivity {
         setContentView(R.layout.activity_register2);
 
         getUsernameLocal();
-        getLevelLocal();
 
         //mencari ID dari XML
         btn_back = findViewById(R.id.btn_back);
@@ -162,9 +161,7 @@ public class Register2Act extends AppCompatActivity {
     public void getUsernameLocal(){
         SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
         username_key_new = sharedPreferences.getString(username_key, "");
-    }
-    public void getLevelLocal(){
-        SharedPreferences sharedPreferences = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
-        level_key_new = sharedPreferences.getString(level_key, "");
+        SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
+        level_key_new = sharedPreferences2.getString(level_key, "");
     }
 }

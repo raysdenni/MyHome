@@ -239,7 +239,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_paynow"
+                android:id="@+id/btn_cancelbooking"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@drawable/bg_buttonred"
