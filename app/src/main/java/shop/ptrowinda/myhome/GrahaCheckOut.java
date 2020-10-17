@@ -92,7 +92,7 @@ public class GrahaCheckOut extends AppCompatActivity {
 
         //mengambil data user dari firebase
         reference2 = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
-        reference2.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 saldo = Integer.valueOf(dataSnapshot.child("user_balance").getValue().toString());
@@ -107,7 +107,7 @@ public class GrahaCheckOut extends AppCompatActivity {
 
         //mengambil data dari firebase berdasarkan intent
         reference = FirebaseDatabase.getInstance().getReference().child("Graha").child(jenis_graha_baru);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //menimpa data yang ada dengan data yang baru dari firebase
@@ -119,6 +119,13 @@ public class GrahaCheckOut extends AppCompatActivity {
                 //proses perhitungan harga
                 valuehargarumah = Integer.valueOf(dataSnapshot.child("harga_graha").getValue().toString());
                 valuetotalharga = valuehargarumah * valueJumlahBooking;
+
+                if (valuetotalharga > saldo){
+                    btn_paynow.animate().translationY(250).alpha(0).setDuration(350).start();
+                    btn_paynow.setEnabled(false);
+                    textsaldo.setTextColor(Color.parseColor("#D1206B"));
+                    notice_saldo.setVisibility(View.VISIBLE);
+                }
                 texttotalharga.setText("Rp "+ NumberFormat.getNumberInstance().format(valuetotalharga)+"");
             }
 

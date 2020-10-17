@@ -93,7 +93,7 @@ public class SigninAct extends AppCompatActivity {
                                         editor.putString(username_key, xusername.getText().toString());
                                         editor.apply();
 
-                                        //berpindah aktiviti
+                                        //berpindah aktivity
                                         Intent gotohome = new Intent(SigninAct.this,HomeAct.class);
                                         startActivity(gotohome);
                                         progressBar.setVisibility(View.GONE);

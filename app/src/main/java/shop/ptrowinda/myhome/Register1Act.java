@@ -26,7 +26,7 @@ public class Register1Act extends AppCompatActivity {
     EditText username, password, email_address;
     ProgressBar progressBar;
 
-    DatabaseReference reference;
+    DatabaseReference reference, reference_username;
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
@@ -56,34 +56,83 @@ public class Register1Act extends AppCompatActivity {
                 btn_continue.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
 
-                //fungsi untuk menyimpan username ke lokal
-                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(username_key, username.getText().toString());
-                editor.apply();
+                final String xusername = username.getText().toString();
+                final String xpassword = password.getText().toString();
+                final String xemail_address = email_address.getText().toString();
 
-                //simpan kedalam database
-                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        dataSnapshot.getRef().child("username").setValue(username.getText().toString());
-                        dataSnapshot.getRef().child("password").setValue(password.getText().toString());
-                        dataSnapshot.getRef().child("email_address").setValue(email_address.getText().toString());
-                        dataSnapshot.getRef().child("user_balance").setValue(5000000);
-                    }
+                if (xusername.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Gagal! Isikan Nama Pengguna anda!", Toast.LENGTH_SHORT).show();
+                    username.requestFocus();
+                    username.setError("Masukkan nama pengguna Anda!");
+                    btn_continue.setEnabled(true);
+                    btn_continue.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }else if (xpassword.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Isikan kata sandi anda!", Toast.LENGTH_SHORT).show();
+                    password.requestFocus();
+                    password.setError("Masukkan kata sandi anda!");
+                    btn_continue.setEnabled(true);
+                    btn_continue.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }else if (xemail_address.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Isikan Email anda!", Toast.LENGTH_SHORT).show();
+                    email_address.requestFocus();
+                    email_address.setError("Masukkan Email anda!");
+                    btn_continue.setEnabled(true);
+                    btn_continue.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }else {
+                    //mengambil username pada database firebase
+                    reference_username = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                    reference_username.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            // jika username tersedia
+                            if (dataSnapshot.exists()){
+                                Toast.makeText(getApplicationContext(), "Nama pengguna sudah ada!", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                btn_continue.setVisibility(View.VISIBLE);
+                                btn_continue.setEnabled(true);
+                            }
+                            else {
+                                //fungsi untuk menyimpan username ke lokal
+                                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(username_key, username.getText().toString());
+                                editor.apply();
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                //simpan kedalam database
+                                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        dataSnapshot.getRef().child("username").setValue(username.getText().toString());
+                                        dataSnapshot.getRef().child("password").setValue(password.getText().toString());
+                                        dataSnapshot.getRef().child("email_address").setValue(email_address.getText().toString());
+                                        dataSnapshot.getRef().child("user_balance").setValue(5000000);
+                                    }
 
-                    }
-                });
-                progressBar.setVisibility(View.GONE);
-                btn_continue.setVisibility(View.VISIBLE);
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                //berpindah aktivity
-                Intent gotonextregister = new Intent(Register1Act.this,Register2Act.class);
-                startActivity(gotonextregister);
+                                    }
+                                });
+                                progressBar.setVisibility(View.GONE);
+                                btn_continue.setVisibility(View.VISIBLE);
+                                btn_continue.setEnabled(true);
+
+                                //berpindah aktivity
+                                Intent gotonextregister = new Intent(Register1Act.this,Register2Act.class);
+                                startActivity(gotonextregister);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
             }
         });
         btn_back.setOnClickListener(new View.OnClickListener() {
