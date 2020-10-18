@@ -167,10 +167,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="24dp"
-                            android:fontFamily="@font/mregular"
+                            android:fontFamily="@font/mlight"
                             android:text="@string/TopUpUser"
                             android:textColor="@color/blackPrimary"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
                     </LinearLayout>
                 </LinearLayout>
                 <View
@@ -201,10 +201,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="24dp"
-                            android:fontFamily="@font/mregular"
+                            android:fontFamily="@font/mlight"
                             android:text="@string/ManageGraha"
                             android:textColor="@color/blackPrimary"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
