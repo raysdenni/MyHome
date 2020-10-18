@@ -96,4 +96,8 @@ public class MarketingPanelListUser extends AppCompatActivity {
         SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
         level_key_new = sharedPreferences2.getString(level_key, "");
     }
+
+    public void onBackPressed(){
+        //disable back
+    }
 }
