@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class MarketingPanel extends AppCompatActivity {
     ImageView foto_home_user;
     ProgressBar progressBar;
     TextView nama_lengkap, bio;
+    LinearLayout btn_topupuser, btn_managegraha;
 
     DatabaseReference reference;
 
@@ -46,6 +48,8 @@ public class MarketingPanel extends AppCompatActivity {
         nama_lengkap = findViewById(R.id.nama_lengkap);
         bio = findViewById(R.id.bio);
         btn_to_profile =findViewById(R.id.btn_to_profile);
+        btn_topupuser =findViewById(R.id.btn_topupuser);
+        btn_managegraha =findViewById(R.id.btn_managegraha);
 
         //mengambil referensi username pada database
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_key_new);
@@ -68,6 +72,23 @@ public class MarketingPanel extends AppCompatActivity {
             public void onClick(View v) {
                 Intent gotoprofile = new Intent(MarketingPanel.this,MyProfileAct.class);
                 startActivity(gotoprofile);
+            }
+        });
+
+        btn_topupuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gototopup = new Intent(MarketingPanel.this,MarketingPanelListUser.class);
+                startActivity(gototopup);
+            }
+        });
+
+        btn_managegraha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent gotomanagegraha = new Intent(MarketingPanel.this,MarketingPanelGraha.class);
+                startActivity(gotomanagegraha);
             }
         });
     }

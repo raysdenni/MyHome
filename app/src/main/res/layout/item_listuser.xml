@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/xnama_lengkap"
-                android:text="DENNI RAMADIANTO"
+                android:text=".........."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mmedium"
@@ -44,7 +44,7 @@
 
             <TextView
                 android:id="@+id/xlevel"
-                android:text="Admin"
+                android:text=".........."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -54,7 +54,7 @@
 
             <TextView
                 android:id="@+id/xsaldo"
-                android:text="Saldo : Rp.5.000.000"
+                android:text="Saldo : Rp..........."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

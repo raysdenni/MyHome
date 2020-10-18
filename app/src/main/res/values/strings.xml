@@ -32,13 +32,17 @@
     <string name="adminpanel">Panel Admin</string>
     <string name="mainmenus">Menu Utama</string>
     <string name="userlist">Daftar Pengguna</string>
+    <string name="topupmenu">Menu TopUp Saldo</string>
     <string name="captmainmenus">Selamat datang di menu utama MyHome</string>
     <string name="userlistdesc">Silahkan pilih pengguna dibawah ini yang ingin anda atur</string>
+    <string name="userlistdesc2">Silahkan pilih pengguna dibawah ini yang akan di isi saldo.</string>
     <string name="BookingMenu">Riwayat Booking</string>
     <string name="Graha2">Graha Robeto</string>
     <string name="Graha1">Graha Winda</string>
     <string name="ManageGraha">Atur Graha</string>
     <string name="TopUpUser">Tambah Saldo User</string>
+    <string name="TopUpNow">Tambah Saldo</string>
+    <string name="TopUpPrice">Jumlah Tambah Saldo</string>
     <string name="settingacc">Pengaturan Akun</string>
     <string name="adstitle">Jelajahi MyHome</string>
     <string name="adssubtitle">Pantau pembaharuan terkini dari kami</string>

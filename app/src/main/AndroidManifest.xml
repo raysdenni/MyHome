@@ -9,7 +9,10 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminPanelEditUser"></activity>
+        <activity android:name=".MarketingPanelListUser"></activity>
+        <activity android:name=".MarketingPanelGraha" />
+        <activity android:name=".MarketingPanelTopup" />
+        <activity android:name=".AdminPanelEditUser" />
         <activity android:name=".MarketingPanel" />
         <activity android:name=".AdminPanel" />
         <activity android:name=".EditProfileAct" />
