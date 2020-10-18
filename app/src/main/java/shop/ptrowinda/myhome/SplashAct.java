@@ -70,7 +70,7 @@ public class SplashAct extends AppCompatActivity {
                     @Override
                     public void run() {
                         //pindah activity ke activity lain
-                        Toast.makeText(getApplicationContext(), "Masuk level: "+level_key_new, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Masuk otomatis sebagai Admin", Toast.LENGTH_SHORT).show();
                         Intent gotoadminpanel = new Intent(SplashAct.this,AdminPanel.class);
                         startActivity(gotoadminpanel);
                         finish();
@@ -83,7 +83,7 @@ public class SplashAct extends AppCompatActivity {
                     @Override
                     public void run() {
                         //pindah activity ke activity lain
-                        Toast.makeText(getApplicationContext(), "Masuk level: "+level_key_new, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Masuk otomatis sebagai Marketing", Toast.LENGTH_SHORT).show();
                         Intent gotomarketingpanel = new Intent(SplashAct.this,MarketingPanel.class);
                         startActivity(gotomarketingpanel);
                         finish();
@@ -96,7 +96,7 @@ public class SplashAct extends AppCompatActivity {
                     @Override
                     public void run() {
                         //pindah activity ke activity lain
-                        Toast.makeText(getApplicationContext(), "Masuk level: "+level_key_new, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Masuk otomatis sebagai Konsumen", Toast.LENGTH_SHORT).show();
                         Intent gotoHomeAct = new Intent(SplashAct.this,HomeAct.class);
                         startActivity(gotoHomeAct);
                         finish();

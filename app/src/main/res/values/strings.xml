@@ -11,11 +11,16 @@
     <string name="register_inst">Mohon isi form yang diminta \ndibawah ini</string>
     <string name="selfie_ins">Biarkan kami mengenali \nanda lebih baik</string>
     <string name="label_continue">Lanjutkan</string>
+    <string name="label_update">Perbaharui</string>
     <string name="selfie_time">Pasang Foto Profil</string>
     <string name="EditProfile">Ubah Profil</string>
+    <string name="EditProfileUser">Ubah Profil User</string>
     <string name="EditProfileDesc">Gunakanlah informasi\nyang sebenarnya.</string>
+    <string name="EditProfileUserDesc">Anda dapat mengubah \nprofil dibawah ini.</string>
     <string name="name_label">Nama Lengkap</string>
     <string name="bio_label">Bio</string>
+    <string name="level_label">Level Pengguna*</string>
+    <string name="level_labeldesc">*(1=Admin, 2=Marketing,3=Pelanggan)</string>
     <string name="success_register">Pendaftaran Berhasil</string>
     <string name="success_booking">Booking Berhasil</string>
     <string name="label_successregister">Selamat bergabung pada MyHome\nAnda dapat melanjutkan\ndengan tombol dibawah</string>
@@ -23,11 +28,17 @@
     <string name="start">Mulai</string>
     <string name="showhistory">Lihat Riwayat</string>
     <string name="mydashboard">Beranda</string>
+    <string name="MarketingPanel">Panel Marketing</string>
+    <string name="adminpanel">Panel Admin</string>
     <string name="mainmenus">Menu Utama</string>
+    <string name="userlist">Daftar Pengguna</string>
     <string name="captmainmenus">Selamat datang di menu utama MyHome</string>
+    <string name="userlistdesc">Silahkan pilih pengguna dibawah ini yang ingin anda atur</string>
     <string name="BookingMenu">Riwayat Booking</string>
     <string name="Graha2">Graha Robeto</string>
     <string name="Graha1">Graha Winda</string>
+    <string name="ManageGraha">Atur Graha</string>
+    <string name="TopUpUser">Tambah Saldo User</string>
     <string name="settingacc">Pengaturan Akun</string>
     <string name="adstitle">Jelajahi MyHome</string>
     <string name="adssubtitle">Pantau pembaharuan terkini dari kami</string>
@@ -57,6 +68,7 @@ Info lanjut bisa langsung hubungi maketing kami.</string>
     <string name="List_Booking">Daftar Booking Saya</string>
     <string name="List_Booking_desc">Berikut adalah riwayat booking saya</string>
     <string name="my_balance">Saldo Saya</string>
+    <string name="marketing_menus">Menu Marketing</string>
     <string name="SignOut">Keluar</string>
     <string name="BookingDetail">Rincian Booking</string>
     <string name="Date">Tanggal</string>

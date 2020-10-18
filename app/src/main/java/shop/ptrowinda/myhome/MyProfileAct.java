@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,7 @@ import java.text.NumberFormat;
 public class MyProfileAct extends AppCompatActivity {
 
     Button btn_edit_profile, btn_sign_out, btn_back_home;
-    TextView nama_lengkap, user_balance, bio, email_address, username;
+    TextView nama_lengkap, user_balance, bio, email_address, username, txtsaldo;
     ImageView photo_profile;
 
     DatabaseReference reference;
@@ -31,8 +32,11 @@ public class MyProfileAct extends AppCompatActivity {
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
     String username_key_new = "";
+    String LEVEL_KEY = "levelkey";
+    String level_key = "";
+    String level_key_new = "";
 
-    Integer saldo = 0;
+//    Integer saldo = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class MyProfileAct extends AppCompatActivity {
         bio = findViewById(R.id.bio);
         email_address = findViewById(R.id.email_address);
         username = findViewById(R.id.username);
+        txtsaldo = findViewById(R.id.txtsaldo);
         photo_profile = findViewById(R.id.photo_profile);
         btn_back_home = findViewById(R.id.btn_back_home);
 
@@ -59,7 +64,23 @@ public class MyProfileAct extends AppCompatActivity {
                 nama_lengkap.setText(dataSnapshot.child("nama_lengkap").getValue().toString());
 //                saldo = Integer.valueOf(dataSnapshot.child("user_balance").getValue().toString());
 //                user_balance.setText("Rp. " + saldo+"");
-                user_balance.setText("Rp "+NumberFormat.getNumberInstance().format(dataSnapshot.child("user_balance").getValue()));
+
+                //logika untuk menampilkan tulisan berdasarkan level user
+                if (level_key_new.equals("1")){
+                    txtsaldo.setText("Menu Profil Admin");
+                    txtsaldo.setTextSize(24);
+                    user_balance.setText("Berikut adalah detail profil anda.");
+                    user_balance.setTextSize(18);
+                    user_balance.setTextColor(Color.parseColor("#FF8D8D8D"));
+                }else if (level_key_new.equals("2")){
+                    txtsaldo.setText("Menu Profil Marketing");
+                    txtsaldo.setTextSize(24);
+                    user_balance.setText("Berikut adalah detail profil anda.");
+                    user_balance.setTextSize(18);
+                    user_balance.setTextColor(Color.parseColor("#FF8D8D8D"));
+                }else {
+                    user_balance.setText("Rp "+NumberFormat.getNumberInstance().format(dataSnapshot.child("user_balance").getValue()));
+                }
                 bio.setText(dataSnapshot.child("bio").getValue().toString());
                 email_address.setText(dataSnapshot.child("email_address").getValue().toString());
                 username.setText(dataSnapshot.child("username").getValue().toString());
@@ -84,18 +105,32 @@ public class MyProfileAct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent gotohome = new Intent(MyProfileAct.this, HomeAct.class);
-                startActivity(gotohome);
+                //logika back berdasarkan level user
+                if (level_key_new.equals("1")){
+                    Intent gotoadminpanel = new Intent(MyProfileAct.this, AdminPanel.class);
+                    startActivity(gotoadminpanel);
+                }else if (level_key_new.equals("2")){
+                    Intent gotomarketingpanel = new Intent(MyProfileAct.this, MarketingPanel.class);
+                    startActivity(gotomarketingpanel);
+                }else {
+                    Intent gotohome = new Intent(MyProfileAct.this, HomeAct.class);
+                    startActivity(gotohome);
+                }
             }
         });
 
         btn_sign_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //fungsi untuk menyimpan username ke lokal
+                //fungsi untuk menghapus username di lokal
                 SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(username_key, null);
+                editor.apply();
+                //fungsi untuk menghapus level di lokal
+                SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
+                SharedPreferences.Editor editor2 = sharedPreferences2.edit();
+                editor.putString(level_key, null);
                 editor.apply();
 
                 //berpindah activity
@@ -109,6 +144,8 @@ public class MyProfileAct extends AppCompatActivity {
     public void getUsernameLocal(){
         SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
         username_key_new = sharedPreferences.getString(username_key, "");
+        SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
+        level_key_new = sharedPreferences2.getString(level_key, "");
     }
 
     public void onBackPressed(){

@@ -4,6 +4,163 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgPrimary"
     tools:context=".AdminPanel">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_gradientprimarygreen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/mregular"
+                android:text="@string/adminpanel"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_view_circle_picture"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <com.github.florent37.shapeofview.shapes.CircleView
+                android:id="@+id/btn_to_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="29dp">
+
+                <ImageView
+                    android:src="@drawable/icon_nopic"
+                    android:id="@+id/foto_home_user"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+
+            </com.github.florent37.shapeofview.shapes.CircleView>
+
+            <TextView
+                android:id="@+id/nama_lengkap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/mmedium"
+                android:text="DENNI RAMADIANTO"
+                android:textColor="#FFF"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/view5"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/bio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/mlight"
+                android:text="Admin"
+                android:textColor="#FFF"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/view5"
+                app:layout_constraintTop_toBottomOf="@+id/nama_lengkap" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/bg_layout_white"
+                android:orientation="vertical"
+                android:paddingLeft="24dp"
+                android:paddingTop="25dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.666"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_to_profile">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mregular"
+                    android:text="@string/userlist"
+                    android:textColor="@color/blackPrimary"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/mlight"
+                    android:text="@string/userlistdesc"
+                    android:textColor="@color/GrayPrimary"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/grayline" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/userlist_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="170dp"
+                android:layout_marginEnd="48dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
