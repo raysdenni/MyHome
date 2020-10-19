@@ -94,20 +94,20 @@
                     android:id="@+id/nama_graha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
+                    android:fontFamily="@font/mmedium"
                     android:text=".........."
                     android:textColor="@color/blackPrimary"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/type_rumah"
+                    android:id="@+id/slot"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:fontFamily="@font/mlight"
+                    android:fontFamily="@font/mregular"
                     android:text=".........."
                     android:textColor="@color/GrayPrimary"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
             <View
                 android:layout_width="0dp"

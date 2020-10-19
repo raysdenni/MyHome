@@ -1,13 +1,13 @@
 package shop.ptrowinda.myhome;
 
-public class ListUser {
+public class APListUser {
 
     String nama_lengkap, password, username, bio, email_address, level, url_photo_profile;
     int user_balance;
 
-    public ListUser(){ }
+    public APListUser(){ }
 
-    public ListUser(String nama_lengkap, String password, String username, String bio, String email_address, String level, int user_balance, String url_photo_profile) {
+    public APListUser(String nama_lengkap, String password, String username, String bio, String email_address, String level, int user_balance, String url_photo_profile) {
         this.nama_lengkap = nama_lengkap;
         this.password = password;
         this.username = username;

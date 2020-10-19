@@ -30,14 +30,16 @@ public class GrahaCheckOut extends AppCompatActivity {
 
     LinearLayout btn_back;
     Button btn_paynow, btn_minus, btn_plus;
-    TextView textjumlahbooking, texttotalharga, textsaldo, nama_graha, type_rumah, ketentuan;
+    TextView textjumlahbooking, texttotalharga, textsaldo, nama_graha, slot, ketentuan;
     Integer valueJumlahBooking = 1;
     Integer saldo = 0;
     Integer valuetotalharga = 0;
     Integer valuehargarumah = 0;
     int sisa_saldo = 0;
+    Integer valueslot = 0;
+    int sisa_slot = 0;
     ImageView notice_saldo;
-    String lokasi, informasi;
+    String lokasi, informasi, type_rumah;
 
     DatabaseReference reference, reference2, reference3, reference4;
 
@@ -78,7 +80,7 @@ public class GrahaCheckOut extends AppCompatActivity {
         btn_paynow = findViewById(R.id.btn_paynow);
         notice_saldo = findViewById(R.id.notice_saldo);
         nama_graha = findViewById(R.id.nama_graha);
-        type_rumah = findViewById(R.id.type_rumah);
+        slot = findViewById(R.id.slot);
         ketentuan = findViewById(R.id.ketentuan);
 
         //setting nilai baru untuk beberapa komponen
@@ -107,24 +109,33 @@ public class GrahaCheckOut extends AppCompatActivity {
 
         //mengambil data dari firebase berdasarkan intent
         reference = FirebaseDatabase.getInstance().getReference().child("Graha").child(jenis_graha_baru);
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 //menimpa data yang ada dengan data yang baru dari firebase
                 nama_graha.setText(dataSnapshot.child("nama_graha").getValue().toString());
-                type_rumah.setText(dataSnapshot.child("type_rumah").getValue().toString());
                 ketentuan.setText(dataSnapshot.child("ketentuan").getValue().toString());
+                slot.setText("Slot tersisa : "+dataSnapshot.child("slot").getValue().toString()+" Unit");
+                type_rumah = dataSnapshot.child("type_rumah").getValue().toString();
                 lokasi = dataSnapshot.child("lokasi").getValue().toString();
                 informasi = dataSnapshot.child("informasi").getValue().toString();
-                //proses perhitungan harga
+
+                //proses get value sebagai bahan referensi aritmatika
+                valueslot = Integer.valueOf(dataSnapshot.child("slot").getValue().toString());
                 valuehargarumah = Integer.valueOf(dataSnapshot.child("harga_graha").getValue().toString());
                 valuetotalharga = valuehargarumah * valueJumlahBooking;
 
+                // logika pengecekan saldo awal ketika pindah activity
                 if (valuetotalharga > saldo){
                     btn_paynow.animate().translationY(250).alpha(0).setDuration(350).start();
                     btn_paynow.setEnabled(false);
                     textsaldo.setTextColor(Color.parseColor("#D1206B"));
                     notice_saldo.setVisibility(View.VISIBLE);
+                }
+                if (valueJumlahBooking>=valueslot){
+                    btn_plus.animate().alpha(0).setDuration(300).start();
+                    btn_plus.setEnabled(false);
                 }
                 texttotalharga.setText("Rp "+ NumberFormat.getNumberInstance().format(valuetotalharga)+"");
             }
@@ -144,6 +155,10 @@ public class GrahaCheckOut extends AppCompatActivity {
                 if (valueJumlahBooking > 1 ){
                     btn_minus.animate().alpha(1).setDuration(300).start();
                     btn_minus.setEnabled(true);
+                }
+                if (valueJumlahBooking>=valueslot){
+                    btn_plus.animate().alpha(0).setDuration(300).start();
+                    btn_plus.setEnabled(false);
                 }
                 valuetotalharga = valuehargarumah * valueJumlahBooking;
                 texttotalharga.setText("Rp "+ NumberFormat.getNumberInstance().format(valuetotalharga)+"");
@@ -165,6 +180,10 @@ public class GrahaCheckOut extends AppCompatActivity {
                 if (valueJumlahBooking <2 ){
                     btn_minus.animate().alpha(0).setDuration(300).start();
                     btn_minus.setEnabled(false);
+                }
+                if (valueJumlahBooking<=valueslot){
+                    btn_plus.animate().alpha(1).setDuration(300).start();
+                    btn_plus.setEnabled(true);
                 }
                 valuetotalharga = valuehargarumah * valueJumlahBooking;
                 texttotalharga.setText("Rp "+ NumberFormat.getNumberInstance().format(valuetotalharga)+"");
@@ -195,7 +214,7 @@ public class GrahaCheckOut extends AppCompatActivity {
                         reference3.getRef().child("id_booking").setValue(nama_graha.getText().toString() + nomor_transaksi);
                         reference3.getRef().child("nama_graha").setValue(nama_graha.getText().toString());
                         reference3.getRef().child("lokasi").setValue(lokasi).toString();
-                        reference3.getRef().child("type_rumah").setValue(type_rumah.getText().toString());
+                        reference3.getRef().child("type_rumah").setValue(type_rumah).toString();
                         reference3.getRef().child("informasi").setValue(informasi).toString();
                         reference3.getRef().child("jumlah_booking").setValue(valueJumlahBooking.toString());
                         reference3.getRef().child("tanggal").setValue(date);
@@ -218,6 +237,21 @@ public class GrahaCheckOut extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         sisa_saldo = saldo - valuetotalharga;
                         reference4.getRef().child("user_balance").setValue(sisa_saldo);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                //memperbaharui slot booking kepada Graha yang dipilih
+                //mengambil data dari firebase database
+                reference = FirebaseDatabase.getInstance().getReference().child("Graha").child(jenis_graha_baru);
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        sisa_slot = valueslot - valueJumlahBooking;
+                        reference.getRef().child("slot").setValue(sisa_slot);
                     }
 
                     @Override

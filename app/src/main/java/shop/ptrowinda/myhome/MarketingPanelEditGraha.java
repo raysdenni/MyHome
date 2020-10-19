@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,13 +22,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class AdminPanelEditUser extends AppCompatActivity {
+import java.text.NumberFormat;
 
-    ImageView foto_home_user;
-    TextView xnama_lengkap;
-    EditText xusername, xlevel, xpassword, xemail_address;
+public class MarketingPanelEditGraha extends AppCompatActivity {
+
+    ImageView thumbnail_graha;
+    TextView xnama_graha, xtype_rumah, xharga_graha_now;
+    EditText xinformasi, xsertifikat, xketentuan, xharga_graha, xslot;
     Button btn_update;
-    LinearLayout btn_back, btn_delete;
+    LinearLayout btn_back;
     ProgressBar progressBar;
 
     DatabaseReference reference;
@@ -43,20 +45,22 @@ public class AdminPanelEditUser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ap_edituser);
+        setContentView(R.layout.mp_editgraha);
 
         getUsernameLocal();
 
         //Mengambil data di XML berdasarkan ID
-        xnama_lengkap = findViewById(R.id.xnama_lengkap);
-        xpassword = findViewById(R.id.xpassword);
-        xlevel = findViewById(R.id.xlevel);
-        xusername = findViewById(R.id.xusername);
-        xemail_address = findViewById(R.id.xemail_address);
+        thumbnail_graha = findViewById(R.id.thumbnail_graha);
+        xnama_graha = findViewById(R.id.xnama_graha);
+        xtype_rumah = findViewById(R.id.xtype_rumah);
+        xharga_graha_now = findViewById(R.id.xharga_graha_now);
+        xinformasi = findViewById(R.id.xinformasi);
         btn_update = findViewById(R.id.btn_update);
         btn_back = findViewById(R.id.btn_back);
-        btn_delete = findViewById(R.id.btn_delete);
-        foto_home_user = findViewById(R.id.foto_home_user);
+        xsertifikat = findViewById(R.id.xsertifikat);
+        xketentuan = findViewById(R.id.xketentuan);
+        xharga_graha = findViewById(R.id.xharga_graha);
+        xslot = findViewById(R.id.xslot);
         progressBar = findViewById(R.id.progressBar);
 
         //kondisi awal
@@ -64,19 +68,22 @@ public class AdminPanelEditUser extends AppCompatActivity {
 
         // mengambil data dari intent
         Bundle bundle = getIntent().getExtras();
-        final String username_baru = bundle.getString("username");
+        final String nama_graha_baru = bundle.getString("nama_graha");
 
         //mengambil referensi username pada database
-        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_baru);
+        reference = FirebaseDatabase.getInstance().getReference().child("Graha").child(nama_graha_baru);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                xnama_lengkap.setText(dataSnapshot.child("nama_lengkap").getValue().toString());
-                xlevel.setText(dataSnapshot.child("level").getValue().toString());
-                xusername.setText(dataSnapshot.child("username").getValue().toString());
-                xpassword.setText(dataSnapshot.child("password").getValue().toString());
-                xemail_address.setText(dataSnapshot.child("email_address").getValue().toString());
-                Picasso.with(AdminPanelEditUser.this).load(dataSnapshot.child("url_photo_profile").getValue().toString()).centerCrop().fit().into(foto_home_user);
+                xnama_graha.setText(dataSnapshot.child("nama_graha").getValue().toString());
+                xtype_rumah.setText(dataSnapshot.child("type_rumah").getValue().toString());
+                xharga_graha_now.setText("Rp. "+NumberFormat.getNumberInstance().format(dataSnapshot.child("harga_graha").getValue()));
+                xinformasi.setText(dataSnapshot.child("informasi").getValue().toString());
+                xsertifikat.setText(dataSnapshot.child("jenis_sertifikat").getValue().toString());
+                xketentuan.setText(dataSnapshot.child("ketentuan").getValue().toString());
+                xharga_graha.setText(dataSnapshot.child("harga_graha").getValue().toString());
+                xslot.setText(dataSnapshot.child("slot").getValue().toString());
+                Picasso.with(MarketingPanelEditGraha.this).load(dataSnapshot.child("url_thumbnail").getValue().toString()).centerCrop().fit().into(thumbnail_graha);
             }
 
             @Override
@@ -95,10 +102,13 @@ public class AdminPanelEditUser extends AppCompatActivity {
                 reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        dataSnapshot.getRef().child("level").setValue(xlevel.getText().toString());
-                        dataSnapshot.getRef().child("password").setValue(xpassword.getText().toString());
-                        dataSnapshot.getRef().child("email_address").setValue(xemail_address.getText().toString());
-                        dataSnapshot.getRef().child("username").setValue(xusername.getText().toString());
+                        int update_harga_booking = Integer.parseInt(xharga_graha.getText().toString());
+                        int update_slot = Integer.parseInt(xslot.getText().toString());
+                        dataSnapshot.getRef().child("harga_graha").setValue(update_harga_booking);
+                        dataSnapshot.getRef().child("slot").setValue(update_slot);
+                        dataSnapshot.getRef().child("jenis_sertifikat").setValue(xsertifikat.getText().toString());
+                        dataSnapshot.getRef().child("informasi").setValue(xinformasi.getText().toString());
+                        dataSnapshot.getRef().child("ketentuan").setValue(xketentuan.getText().toString());
                     }
 
                     @Override
@@ -107,22 +117,10 @@ public class AdminPanelEditUser extends AppCompatActivity {
                     }
                 });
                 //berpindah activity
-                Intent gotoadminpanel = new Intent(AdminPanelEditUser.this,AdminPanel.class);
-                startActivity(gotoadminpanel);
+                Intent gotolistgraha = new Intent(MarketingPanelEditGraha.this,MarketingPanelListGraha.class);
+                startActivity(gotolistgraha);
                 progressBar.setVisibility(View.GONE);
                 btn_update.setVisibility(View.VISIBLE);
-            }
-        });
-
-        btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username_baru);
-                reference.removeValue();
-                Toast.makeText(AdminPanelEditUser.this, "Menghapus Pengguna...", Toast.LENGTH_SHORT).show();
-                finish();
-                Intent gotoadminpanel = new Intent(AdminPanelEditUser.this, AdminPanel.class);
-                startActivity(gotoadminpanel);
             }
         });
 
@@ -134,11 +132,11 @@ public class AdminPanelEditUser extends AppCompatActivity {
         });
 
     }
+
     public void getUsernameLocal(){
         SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
         username_key_new = sharedPreferences.getString(username_key, "");
         SharedPreferences sharedPreferences2 = getSharedPreferences(LEVEL_KEY, MODE_PRIVATE);
         level_key_new = sharedPreferences2.getString(level_key, "");
     }
-
 }

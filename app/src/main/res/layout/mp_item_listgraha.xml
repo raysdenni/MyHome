@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/bg_backbtn"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/mp_item_listgraha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.github.florent37.shapeofview.shapes.ArcView
+            android:layout_gravity="start|center"
+            android:id="@+id/btn_to_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:src="@drawable/icon_shm"
+                android:id="@+id/thumbnail_graha"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+
+        </com.github.florent37.shapeofview.shapes.ArcView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_marginLeft="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/xnama_graha"
+                android:text=".........."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mmedium"
+                android:textColor="@color/blackPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/xtype_rumah"
+                android:text=".........."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/mlight"
+                android:textColor="@color/GrayPrimary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/xharga_graha"
+                android:text="Harga Booking : Rp..........."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/mregular"
+                android:textColor="@color/orangeprimary"
+                android:textSize="12sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/grayline" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

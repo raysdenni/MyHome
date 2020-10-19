@@ -5,8 +5,13 @@
     <string name="sigin">Masuk</string>
     <string name="newaccount">Akun Baru</string>
     <string name="username_label">Nama Pengguna</string>
+    <string name="pricelabel">Biaya Booking</string>
+    <string name="slot">Slot Booking Yang Tersedia</string>
+    <string name="slot2">Jumlah Slot</string>
     <string name="password_label">Kata Sandi</string>
+    <string name="certificatelabel">Jenis Sertifikat</string>
     <string name="email_label">Alamat Email</string>
+    <string name="Term">Ketentuan</string>
     <string name="createaccount">Buat Akun Baru</string>
     <string name="register_inst">Mohon isi form yang diminta \ndibawah ini</string>
     <string name="selfie_ins">Biarkan kami mengenali \nanda lebih baik</string>
@@ -20,6 +25,7 @@
     <string name="name_label">Nama Lengkap</string>
     <string name="bio_label">Bio</string>
     <string name="level_label">Level Pengguna*</string>
+    <string name="informationgraha">Informasi Setelah Booking</string>
     <string name="level_labeldesc">*(1=Admin, 2=Marketing,3=Pelanggan)</string>
     <string name="success_register">Pendaftaran Berhasil</string>
     <string name="success_booking">Booking Berhasil</string>
@@ -32,10 +38,13 @@
     <string name="adminpanel">Panel Admin</string>
     <string name="mainmenus">Menu Utama</string>
     <string name="userlist">Daftar Pengguna</string>
+    <string name="grahalist">Daftar Graha</string>
     <string name="topupmenu">Menu TopUp Saldo</string>
+    <string name="grahamenu">Menu Manajemen Graha</string>
     <string name="captmainmenus">Selamat datang di menu utama MyHome</string>
     <string name="userlistdesc">Silahkan pilih pengguna dibawah ini yang ingin anda atur</string>
-    <string name="userlistdesc2">Silahkan pilih pengguna dibawah ini yang akan di isi saldo.</string>
+    <string name="userlistdesc2">Silahkan pilih pengguna dibawah ini yang ingin anda isi saldo</string>
+    <string name="grahalistdesc">Silahkan pilih Graha dibawah ini yang akan di manajemen.</string>
     <string name="BookingMenu">Riwayat Booking</string>
     <string name="Graha2">Graha Robeto</string>
     <string name="Graha1">Graha Winda</string>
@@ -53,6 +62,7 @@
     <string name="KeyCapt">Cukup dengan bayar DP saja</string>
     <string name="SHM">Jenis Sertifikat</string>
     <string name="Location">Lokasi Yang Strategis</string>
+    <string name="PriceLabel">Harga Booking</string>
     <string name="LocationCapt">Jl. Teropong No.A1, Pekanbaru</string>
     <string name="LabelBookingBTN">BOOKING</string>
     <string name="AddBooking">BOOKING RUMAH</string>

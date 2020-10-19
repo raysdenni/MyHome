@@ -18,11 +18,11 @@ import java.util.ArrayList;
 
 public class MPListUserAdapter extends RecyclerView.Adapter<MPListUserAdapter.MyViewHolder> {
     Context context;
-    ArrayList<MPListUser> mpListUsersistUser;
+    ArrayList<MPListUser> mpListUser;
 
     public MPListUserAdapter(Context c, ArrayList<MPListUser> p){
         context = c;
-        mpListUsersistUser = p;
+        mpListUser = p;
     }
 
     @NonNull
@@ -34,13 +34,13 @@ public class MPListUserAdapter extends RecyclerView.Adapter<MPListUserAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.xnama_lengkap.setText(mpListUsersistUser.get(position).getNama_lengkap());
-        holder.xemail_address.setText(mpListUsersistUser.get(position).getEmail_address());
-        holder.xsaldo.setText("Saldo : Rp. "+ NumberFormat.getNumberInstance().format(mpListUsersistUser.get(position).getUser_balance()));
-        final  String getUrl_photo_profile = mpListUsersistUser.get(position).getUrl_photo_profile();
+        holder.xnama_lengkap.setText(mpListUser.get(position).getNama_lengkap());
+        holder.xemail_address.setText(mpListUser.get(position).getEmail_address());
+        holder.xsaldo.setText("Saldo : Rp. "+ NumberFormat.getNumberInstance().format(mpListUser.get(position).getUser_balance()));
+        final  String getUrl_photo_profile = mpListUser.get(position).getUrl_photo_profile();
         Picasso.with(this.context).load(getUrl_photo_profile).centerCrop().fit().into(holder.foto_home_user);
 
-        final String getUsername = mpListUsersistUser.get(position).getUsername();
+        final String getUsername = mpListUser.get(position).getUsername();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +53,7 @@ public class MPListUserAdapter extends RecyclerView.Adapter<MPListUserAdapter.My
 
     @Override
     public int getItemCount() {
-        return mpListUsersistUser.size();
+        return mpListUser.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

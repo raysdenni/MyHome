@@ -7,22 +7,6 @@
     android:background="@color/bgPrimary"
     tools:context=".AdminPanel">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:orientation="vertical"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <View
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
@@ -99,57 +83,59 @@
                 app:layout_constraintStart_toEndOf="@+id/view5"
                 app:layout_constraintTop_toBottomOf="@+id/nama_lengkap" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="24dp"
-                android:background="@drawable/bg_layout_white"
-                android:orientation="vertical"
-                android:paddingLeft="24dp"
-                android:paddingTop="25dp"
-                android:paddingRight="24dp"
-                android:paddingBottom="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.666"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_to_profile">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_layout_white"
+        android:orientation="vertical"
+        android:paddingLeft="24dp"
+        android:paddingTop="25dp"
+        android:paddingRight="24dp"
+        android:paddingBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_to_profile">
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mregular"
-                    android:text="@string/userlist"
-                    android:textColor="@color/blackPrimary"
-                    android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mregular"
+            android:text="@string/userlist"
+            android:textColor="@color/blackPrimary"
+            android:textSize="20sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/mlight"
-                    android:text="@string/userlistdesc"
-                    android:textColor="@color/GrayPrimary"
-                    android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/mlight"
+            android:text="@string/userlistdesc"
+            android:textColor="@color/GrayPrimary"
+            android:textSize="16sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@color/grayline" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/grayline" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/userlist_place"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userlist_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-                </androidx.recyclerview.widget.RecyclerView>
-            </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -160,7 +146,6 @@
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

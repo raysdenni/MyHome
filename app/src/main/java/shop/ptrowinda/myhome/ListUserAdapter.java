@@ -18,29 +18,29 @@ import java.util.ArrayList;
 
 public class ListUserAdapter extends RecyclerView.Adapter<ListUserAdapter.MyViewHolder> {
     Context context;
-    ArrayList<ListUser> listUser;
+    ArrayList<APListUser> APlistUser;
 
-    public ListUserAdapter(Context c, ArrayList<ListUser> p){
+    public ListUserAdapter(Context c, ArrayList<APListUser> p){
         context = c;
-        listUser = p;
+        APlistUser = p;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_listuser, parent, false));
+        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.ap_item_listuser, parent, false));
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.xnama_lengkap.setText(listUser.get(position).getNama_lengkap());
-        holder.xlevel.setText(listUser.get(position).getLevel());
-        holder.xsaldo.setText("Saldo : Rp. "+ NumberFormat.getNumberInstance().format(listUser.get(position).getUser_balance()));
-        final  String getUrl_photo_profile = listUser.get(position).getUrl_photo_profile();
+        holder.xnama_lengkap.setText(APlistUser.get(position).getNama_lengkap());
+        holder.xlevel.setText(APlistUser.get(position).getLevel());
+        holder.xsaldo.setText("Saldo : Rp. "+ NumberFormat.getNumberInstance().format(APlistUser.get(position).getUser_balance()));
+        final  String getUrl_photo_profile = APlistUser.get(position).getUrl_photo_profile();
         Picasso.with(this.context).load(getUrl_photo_profile).centerCrop().fit().into(holder.foto_home_user);
 
-        final String getUsername = listUser.get(position).getUsername();
+        final String getUsername = APlistUser.get(position).getUsername();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +53,7 @@ public class ListUserAdapter extends RecyclerView.Adapter<ListUserAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return listUser.size();
+        return APlistUser.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

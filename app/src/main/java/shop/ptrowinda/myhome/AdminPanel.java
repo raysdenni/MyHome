@@ -33,7 +33,7 @@ public class AdminPanel extends AppCompatActivity {
 
     LinearLayout item_listuser;
     RecyclerView userlist_place;
-    ArrayList<ListUser> list;
+    ArrayList<APListUser> list;
     ListUserAdapter listUserAdapter;
 
     DatabaseReference reference, reference2;
@@ -48,7 +48,7 @@ public class AdminPanel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_panel);
+        setContentView(R.layout.ap_adminpanel);
 
         getUsernameLocal();
 
@@ -80,14 +80,14 @@ public class AdminPanel extends AppCompatActivity {
         });
 
         userlist_place.setLayoutManager(new LinearLayoutManager(this));
-        list = new ArrayList<ListUser>();
+        list = new ArrayList<APListUser>();
 
         reference2 = FirebaseDatabase.getInstance().getReference().child("Users");
         reference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    ListUser p = dataSnapshot1.getValue(ListUser.class);
+                    APListUser p = dataSnapshot1.getValue(APListUser.class);
                     list.add(p);
                 }
                 listUserAdapter = new ListUserAdapter(AdminPanel.this, list);

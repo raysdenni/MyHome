@@ -21,15 +21,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MarketingPanelListUser extends AppCompatActivity {
+public class MarketingPanelListGraha extends AppCompatActivity {
 
     ProgressBar progressBar;
     Button btn_back;
 
-    LinearLayout mp_item_listuser;
-    RecyclerView userlist_place;
-    ArrayList<MPListUser> list;
-    MPListUserAdapter mpListUserAdapter;
+    LinearLayout mp_item_listgraha;
+    RecyclerView grahalist_place;
+    ArrayList<MPListGraha> list;
+    MPListGrahaAdapter mpListGrahaAdapter;
 
     DatabaseReference reference;
 
@@ -43,32 +43,31 @@ public class MarketingPanelListUser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mp_listuser);
+        setContentView(R.layout.mp_listgraha);
 
         getUsernameLocal();
 
-
         progressBar = findViewById(R.id.progressBar);
-        mp_item_listuser = findViewById(R.id.mp_item_listuser);
-        userlist_place = findViewById(R.id.userlist_place);
+        mp_item_listgraha = findViewById(R.id.mp_item_listgraha);
+        grahalist_place = findViewById(R.id.grahalist_place);
         btn_back = findViewById(R.id.btn_back);
 
-        // state awal progressbar
+        //state awal progressbar
         progressBar.setVisibility(View.VISIBLE);
 
-        userlist_place.setLayoutManager(new LinearLayoutManager(this));
-        list = new ArrayList<MPListUser>();
+        grahalist_place.setLayoutManager(new LinearLayoutManager(this));
+        list = new ArrayList<MPListGraha>();
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Users");
+        reference = FirebaseDatabase.getInstance().getReference().child("Graha");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    MPListUser p = dataSnapshot1.getValue(MPListUser.class);
+                    MPListGraha p = dataSnapshot1.getValue(MPListGraha.class);
                     list.add(p);
                 }
-                mpListUserAdapter = new MPListUserAdapter(MarketingPanelListUser.this, list);
-                userlist_place.setAdapter(mpListUserAdapter);
+                mpListGrahaAdapter = new MPListGrahaAdapter(MarketingPanelListGraha.this, list);
+                grahalist_place.setAdapter(mpListGrahaAdapter);
                 progressBar.setVisibility(View.GONE);
             }
 
@@ -81,7 +80,7 @@ public class MarketingPanelListUser extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gotoMarketingPanel = new Intent(MarketingPanelListUser.this,MarketingPanel.class);
+                Intent gotoMarketingPanel = new Intent(MarketingPanelListGraha.this,MarketingPanel.class);
                 startActivity(gotoMarketingPanel);
             }
         });

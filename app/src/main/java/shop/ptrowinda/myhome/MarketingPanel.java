@@ -40,7 +40,7 @@ public class MarketingPanel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_marketing_panel);
+        setContentView(R.layout.mp_marketingpanel);
 
         getUsernameLocal();
 
@@ -87,7 +87,7 @@ public class MarketingPanel extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent gotomanagegraha = new Intent(MarketingPanel.this,MarketingPanelGraha.class);
+                Intent gotomanagegraha = new Intent(MarketingPanel.this, MarketingPanelListGraha.class);
                 startActivity(gotomanagegraha);
             }
         });
